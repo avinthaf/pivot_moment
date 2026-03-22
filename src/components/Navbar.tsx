@@ -1,6 +1,6 @@
-import { Button, Container, Flex, Dialog } from "@radix-ui/themes";
+import { Button, Container, Flex, Dialog, IconButton } from "@radix-ui/themes";
 import { NavigationMenu } from "radix-ui";
-import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon, Cross1Icon, TwitterLogoIcon, InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router";
 import { useState } from 'react';
 
@@ -35,14 +35,26 @@ const Navbar = () => {
                             </NavigationMenu.Item>
                         </Flex>
 
-                        {/* Desktop Sign Up Button */}
-                        <NavigationMenu.Item className="hidden lg:block" style={{ display: 'none' }} data-desktop-signup>
-                            <Link to="/auth/signup">
-                                <NavigationMenu.Link>
-                                    <Button size="3">Sign up</Button>
-                                </NavigationMenu.Link>
-                            </Link>
-                        </NavigationMenu.Item>
+
+
+                        {/* Desktop Socials & Sign Up Button */}
+                        <Flex gap="4" align="center" className="hidden lg:block">
+                            <Flex gap="2" direction="row">
+                                <Link to="/" className="hidden lg:block">
+                                    <TwitterLogoIcon />
+                                </Link>
+                                <Link to="/" className="hidden lg:block">
+                                    <InstagramLogoIcon />
+                                </Link>
+                            </Flex>
+                            <NavigationMenu.Item style={{ display: 'none' }} data-desktop-signup>
+                                <Link to="/auth/signup">
+                                    <NavigationMenu.Link>
+                                        <Button size="3">Sign up</Button>
+                                    </NavigationMenu.Link>
+                                </Link>
+                            </NavigationMenu.Item>
+                        </Flex>
 
                         {/* Mobile Drawer Menu */}
                         <NavigationMenu.Item className="lg:hidden">
@@ -104,6 +116,18 @@ const Navbar = () => {
                                                     </Link>
                                                 </Flex>
                                             </nav>
+
+                                            {/* Mobile Socials */}
+                                            <div className="mt-12">
+                                                <Flex gap="4" justify="center">
+                                                    <Link to="/" onClick={() => setIsOpen(false)}>
+                                                        <TwitterLogoIcon width="24" height="24" />
+                                                    </Link>
+                                                    <Link to="/" onClick={() => setIsOpen(false)}>
+                                                        <InstagramLogoIcon width="24" height="24" />
+                                                    </Link>
+                                                </Flex>
+                                            </div>
 
                                             <div className="mt-16">
                                                 <Link to="/auth/signup" onClick={() => setIsOpen(false)}>
