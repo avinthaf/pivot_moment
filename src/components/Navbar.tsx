@@ -1,11 +1,14 @@
-import { Button, Container, Flex } from "@radix-ui/themes";
+import { Button, Container, Flex, Dialog } from "@radix-ui/themes";
 import { NavigationMenu } from "radix-ui";
+import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { Link } from "react-router";
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <Container className="py-4 fixed w-full top-0 z-50">
-            <NavigationMenu.Root className="py-3 px-8 shadow-md bg-white rounded-4xl">
+        <Container className="py-4 fixed top-0 z-50 w-auto md:w-full max-w-none">
+            <NavigationMenu.Root className="py-3 px-4 md:px-8 shadow-md bg-white rounded-4xl">
                 <NavigationMenu.List>
                     <Flex gap="4" align="center" justify="between">
                         <NavigationMenu.Item>
@@ -17,7 +20,8 @@ const Navbar = () => {
                             </NavigationMenu.Link>
                         </NavigationMenu.Item>
 
-                        <Flex gap="4">
+                        {/* Desktop Navigation */}
+                        <Flex gap="4" className="hidden lg:flex" style={{ display: 'none' }} data-desktop-nav>
                             <NavigationMenu.Item>
                                 <NavigationMenu.Link className="font-bold text-sm">Home</NavigationMenu.Link>
                             </NavigationMenu.Item>
@@ -31,12 +35,87 @@ const Navbar = () => {
                             </NavigationMenu.Item>
                         </Flex>
 
-                        <NavigationMenu.Item>
+                        {/* Desktop Sign Up Button */}
+                        <NavigationMenu.Item className="hidden lg:block" style={{ display: 'none' }} data-desktop-signup>
                             <Link to="/auth/signup">
                                 <NavigationMenu.Link>
                                     <Button size="3">Sign up</Button>
                                 </NavigationMenu.Link>
                             </Link>
+                        </NavigationMenu.Item>
+
+                        {/* Mobile Drawer Menu */}
+                        <NavigationMenu.Item className="lg:hidden">
+                            <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+                                <Dialog.Trigger>
+                                    <button className="p-2" aria-label="Menu">
+                                        <HamburgerMenuIcon width="24" height="24" />
+                                    </button>
+                                </Dialog.Trigger>
+
+                                <Dialog.Content
+                                    width="100vw"
+                                    height="100vh"
+                                    maxWidth="100vw"
+                                    maxHeight="100vh"
+                                    style={{
+                                        position: 'fixed',
+                                        top: '0',
+                                        left: '0',
+                                        borderRadius: '0',
+                                        padding: '0',
+                                        backgroundColor: 'white',
+                                        transform: 'translateX(0)',
+                                        animation: 'slideInLeft 0.3s ease-out'
+                                    }}
+                                    className="data-[state=open]:animate-slideIn data-[state=closed]:animate-slideOut"
+                                >
+                                    <div className="h-full flex flex-col">
+                                        {/* Drawer Header */}
+                                        <div className="flex justify-between items-center p-6 border-b">
+                                            <Dialog.Close>
+                                                <button className="p-2" aria-label="Close menu">
+                                                    <Cross1Icon width="24" height="24" />
+                                                </button>
+                                            </Dialog.Close>
+                                            <div></div>
+                                        </div>
+
+                                        {/* Drawer Content */}
+                                        <div className="flex-1 flex flex-col justify-center p-6">
+                                            <nav className="space-y-8">
+                                                <Flex direction="column" gap="4">
+                                                    <Link to="/" onClick={() => setIsOpen(false)}>
+                                                        <button className="text-3xl font-bold text-left hover:text-gray-600 transition-colors">
+                                                            Home
+                                                        </button>
+                                                    </Link>
+
+                                                    <Link to="/schedule" onClick={() => setIsOpen(false)}>
+                                                        <button className="text-3xl font-bold text-left hover:text-gray-600 transition-colors">
+                                                            Schedule
+                                                        </button>
+                                                    </Link>
+
+                                                    <Link to="/contact" onClick={() => setIsOpen(false)}>
+                                                        <button className="text-3xl font-bold text-left hover:text-gray-600 transition-colors">
+                                                            Contact
+                                                        </button>
+                                                    </Link>
+                                                </Flex>
+                                            </nav>
+
+                                            <div className="mt-16">
+                                                <Link to="/auth/signup" onClick={() => setIsOpen(false)}>
+                                                    <Button size="4" className="w-full">
+                                                        Sign up
+                                                    </Button>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Dialog.Content>
+                            </Dialog.Root>
                         </NavigationMenu.Item>
                     </Flex>
                 </NavigationMenu.List>

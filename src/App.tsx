@@ -7,61 +7,31 @@ import Footer from './components/Footer'
 import Schedule from './components/Schedule'
 import About from './components/About';
 import NewsletterSignup from './components/NewsletterSignup';
+import Offerings from './components/Offerings';
+import Classes from './components/Classes';
 
 function App() {
 
   return (
     <motion.div
-      // initial={{ opacity: 0, y: 20 }}
-      // animate={{ opacity: 1, y: 0 }}
-      // exit={{ opacity: 0, y: -20 }}
-      // transition={{ duration: 0.4, ease: "easeInOut" }}
+    // initial={{ opacity: 0, y: 20 }}
+    // animate={{ opacity: 1, y: 0 }}
+    // exit={{ opacity: 0, y: -20 }}
+    // transition={{ duration: 0.4, ease: "easeInOut" }}
     >
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
 
       <section className="pt-20">
         <About />
       </section>
 
-      <section>
-        <Container className="pt-20">
-          <Flex gap="2" direction="column" className="rounded-4xl p-10 bg-gradient-to-b from-[#F5F7FF] via-[#fffbee] to-[#E6EFFF]">
-            <Heading size="8">What I offer</Heading>
-            <Text className="max-w-[50%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-            <Flex gap="4" className="pt-4">
-              <Flex height="480px" width="200px" className="flex-1" direction="column">
-                <Skeleton width="100%" height="100%" />
-                <Heading size="3" className="pt-2">Offering #1</Heading>
-                <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
-              </Flex>
-              <Flex height="480px" width="200px" className="flex-1" direction="column">
-                <Skeleton width="100%" height="100%" />
-                <Heading size="3" className="pt-2">Offering #2</Heading>
-                <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
-              </Flex>
-              <Flex height="480px" width="200px" className="flex-1" direction="column">
-                <Skeleton width="100%" height="100%" />
-                <Heading size="3" className="pt-2">Offering #3</Heading>
-                <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
-              </Flex>
-            </Flex>
-          </Flex>
-        </Container>
+      <section className="pt-20">
+        <Offerings />
       </section>
 
-      <section>
-        <Container className="pt-20">
-          <Flex className="" gap="2" direction="column">
-            <Heading size="8">Classes</Heading>
-            <Text className="max-w-[50%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-
-            {/* <Skeleton className="mt-4" width="100%" height="680px" /> */}
-
-            <Schedule />
-
-          </Flex>
-        </Container>
+      <section className="pt-20">
+        <Classes />
       </section>
 
       <section className="pt-20">

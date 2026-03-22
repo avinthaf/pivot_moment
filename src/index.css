@@ -4,3 +4,60 @@
 * {
   box-sizing: border-box;
 }
+
+/* Desktop navigation - only show on large screens */
+@media (min-width: 1024px) {
+  [data-desktop-nav] {
+    display: flex !important;
+  }
+
+  [data-desktop-signup] {
+    display: block !important;
+  }
+}
+
+/* Drawer animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Override dialog overlay for drawer */
+[data-radix-dialog-overlay] {
+  background-color: rgba(0, 0, 0, 0.5);
+}

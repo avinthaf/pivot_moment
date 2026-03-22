@@ -2,18 +2,27 @@ import { Container, Flex, Heading, Text, TextField, Button } from "@radix-ui/the
 
 const NewsletterSignup = () => {
     return (
-        <Container p="8" style={{ backgroundColor: 'var(--accent-9)' }}>
+        <Container p={{ initial: "6", md: "8" }} style={{ backgroundColor: 'var(--accent-9)' }}>
             <Flex direction="column" align="center" justify="center">
-                <Flex className="max-w-5xl w-full"  gap="6">
+                <Flex className="max-w-5xl w-full" gap="6" direction={{
+                    initial: "column",
+                    md: "row"
+                }}>
                     <Flex direction="column" gap="4" className="max-w-md w-full">
-                        <Heading size="7" className="text-white">Subscribe to our newsletter</Heading>
+                        <Heading size={{
+                            initial: "6",
+                            md: "7"
+                        }} className="text-white">Subscribe to our newsletter</Heading>
                         <Text className="text-white/80">
                             Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt dolore.
                         </Text>
-                        <Flex gap="3" mt="4">
+                        <Flex gap="3" mt="4" direction={{
+                            initial: "column",
+                            sm: "row"
+                        }}>
                             <TextField.Root
                                 placeholder="Enter your email"
-                                className="flex-1 max-w-64"
+                                className="flex-1 w-full sm:max-w-64"
                                 size="3"
                             />
                             <Button size="3" style={{ backgroundColor: 'var(--accent-12)', color: '#FFF' }}>
@@ -22,7 +31,7 @@ const NewsletterSignup = () => {
                         </Flex>
                     </Flex>
 
-                    <Flex gap="8" justify="center" wrap="wrap">
+                    <Flex gap="8" justify={{ initial: "start", md: "center" }} wrap="wrap" className="w-full">
                         <Flex direction="column" gap="3" className="max-w-48">
                             <Flex align="center" gap="3">
                                 <div className="bg-white/20 p-2.5 rounded-md">
