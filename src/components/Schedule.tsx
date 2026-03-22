@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import '../dayjs-config';
-import { Flex, Heading, IconButton, SegmentedControl, Text } from '@radix-ui/themes';
+import { Flex, Heading, IconButton, SegmentedControl, Avatar, Text } from '@radix-ui/themes';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 
 const Schedule = () => {
@@ -20,8 +20,32 @@ const Schedule = () => {
     {
       id: '2',
       title: 'M',
-      date: dayjs().date(20),
+      date: dayjs().date(15),
       description: 'Guided meditation workshop',
+      backgroundColor: '#10b981',
+      color: 'white'
+    },
+    {
+      id: '3',
+      title: 'B',
+      date: dayjs().date(15),
+      description: 'Breathwork workshop',
+      backgroundColor: '#ef4444',
+      color: 'white'
+    },
+    {
+      id: '4',
+      title: 'Y',
+      date: dayjs().date(20),
+      description: 'Evening yoga flow',
+      backgroundColor: '#3b82f6',
+      color: 'white'
+    },
+    {
+      id: '5',
+      title: 'M',
+      date: dayjs().date(22),
+      description: 'Mindfulness meditation',
       backgroundColor: '#10b981',
       color: 'white'
     }
@@ -133,28 +157,46 @@ const Schedule = () => {
             {timeSlots.map((time, index) => {
               const eventsAtTime = dayEvents.filter(event => {
                 // For demo purposes, let's assign some events to specific times
-                if (event.title === 'Yoga Class' && time.hour() === 10) return true;
-                if (event.title === 'Meditation Workshop' && time.hour() === 14) return true;
+                if (event.title === 'Y' && time.hour() === 10) return true;
+                if (event.title === 'M' && time.hour() === 10) return true;
+                if (event.title === 'B' && time.hour() === 10) return true;
                 return false;
               });
 
               return (
                 <div key={index} className={`h-16 relative ${index === timeSlots.length - 1 ? '' : 'border-b border-gray-200'
                   }`}>
-                  {eventsAtTime.map(event => (
-                    <div
-                      key={event.id}
-                      className="absolute left-2 right-2 p-2 rounded text-sm"
-                      style={{
-                        backgroundColor: event.backgroundColor,
-                        color: event.color,
-                        top: '2px'
-                      }}
-                    >
-                      <Text weight="bold">{event.title}</Text>
-                      <Text size="1">{event.description}</Text>
+                  {eventsAtTime.length > 0 && (
+                    <div className="absolute left-1 md:left-2 top-2">
+                      {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
+                        <Avatar
+                          key={event.id}
+                          size={{ initial: "1", md: "2" }}
+                          fallback={event.title}
+                          style={{
+                            backgroundColor: event.backgroundColor,
+                            color: event.color,
+                            marginLeft: eventIndex > 0 ? '-8px' : '0',
+                            border: '1px solid white'
+                          }}
+                          className="text-xs font-bold"
+                        />
+                      ))}
+                      {eventsAtTime.length > 3 && (
+                        <Avatar
+                          size={{ initial: "1", md: "2" }}
+                          fallback={`+${eventsAtTime.length - 3}`}
+                          variant="solid"
+                          color="gray"
+                          style={{
+                            marginLeft: '-8px',
+                            border: '1px solid white'
+                          }}
+                          className="text-xs font-bold"
+                        />
+                      )}
                     </div>
-                  ))}
+                  )}
                 </div>
               );
             })}
@@ -223,27 +265,46 @@ const Schedule = () => {
                         const eventsAtTime = dayEvents.filter(event => {
                           // Check if the day matches the event date and time matches
                           if (!day.isSame(event.date, 'day')) return false;
-                          if (event.title === 'Yoga Class' && time.hour() === 10) return true;
-                          if (event.title === 'Meditation Workshop' && time.hour() === 14) return true;
+                          if (event.title === 'Y' && time.hour() === 10) return true;
+                          if (event.title === 'M' && time.hour() === 10) return true;
+                          if (event.title === 'B' && time.hour() === 10) return true;
                           return false;
                         });
 
                         return (
                           <div key={timeIndex} className={`h-16 relative ${timeIndex === timeSlots.length - 1 ? '' : 'border-b border-gray-200'
                             }`}>
-                            {eventsAtTime.map(event => (
-                              <div
-                                key={event.id}
-                                className="absolute left-1 right-1 p-1 rounded text-xs"
-                                style={{
-                                  backgroundColor: event.backgroundColor,
-                                  color: event.color,
-                                  top: '2px'
-                                }}
-                              >
-                                <Text weight="bold">{event.title}</Text>
+                            {eventsAtTime.length > 0 && (
+                              <div className="absolute left-1 md:left-2 top-2">
+                                {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
+                                  <Avatar
+                                    key={event.id}
+                                    size={{ initial: "1", md: "2" }}
+                                    fallback={event.title}
+                                    style={{
+                                      backgroundColor: event.backgroundColor,
+                                      color: event.color,
+                                      marginLeft: eventIndex > 0 ? '-8px' : '0',
+                                      border: '1px solid white'
+                                    }}
+                                    className="text-xs font-bold"
+                                  />
+                                ))}
+                                {eventsAtTime.length > 3 && (
+                                  <Avatar
+                                    size={{ initial: "1", md: "2" }}
+                                    fallback={`+${eventsAtTime.length - 3}`}
+                                    variant="solid"
+                                    color="gray"
+                                    style={{
+                                      marginLeft: '-8px',
+                                      border: '1px solid white'
+                                    }}
+                                    className="text-xs font-bold"
+                                  />
+                                )}
                               </div>
-                            ))}
+                            )}
                           </div>
                         );
                       })}
@@ -311,20 +372,38 @@ const Schedule = () => {
                           {day.format('D')}
                         </div>
                         <div className="space-y-1">
-                          {dayEvents.slice(0, 2).map((event: any) => ( // Limit to 2 events on mobile
-                            <div
-                              key={event.id}
-                              className="text-xs p-1 rounded truncate"
-                              style={{
-                                backgroundColor: event.backgroundColor,
-                                color: event.color
-                              }}
-                            >
-                              {event.title}
+                          {dayEvents.length > 0 && (
+                            <div className="relative flex justify-center" style={{ height: '20px' }}>
+                              {dayEvents.slice(0, 3).map((event, eventIndex) => (
+                                <Avatar
+                                  key={event.id}
+                                  size="1"
+                                  fallback={event.title}
+                                  style={{
+                                    backgroundColor: event.backgroundColor,
+                                    color: event.color,
+                                    position: 'absolute',
+                                    left: `${eventIndex * 12}px`,
+                                    border: '1px solid white'
+                                  }}
+                                  className="text-xs font-bold"
+                                />
+                              ))}
+                              {dayEvents.length > 3 && (
+                                <Avatar
+                                  size="1"
+                                  fallback={`+${dayEvents.length - 3}`}
+                                  variant="solid"
+                                  color="gray"
+                                  style={{
+                                    position: 'absolute',
+                                    left: `${Math.min(3, dayEvents.length) * 12}px`,
+                                    border: '1px solid white'
+                                  }}
+                                  className="text-xs font-bold"
+                                />
+                              )}
                             </div>
-                          ))}
-                          {dayEvents.length > 2 && (
-                            <div className="text-xs text-gray-500">+{dayEvents.length - 2} more</div>
                           )}
                         </div>
                       </div>
@@ -363,6 +442,22 @@ const Schedule = () => {
             <SegmentedControl.Item value="week">Week</SegmentedControl.Item>
             <SegmentedControl.Item value="month">Month</SegmentedControl.Item>
           </SegmentedControl.Root>
+        </Flex>
+      </Flex>
+
+      {/* Legend */}
+      <Flex className="py-2" align="center" gap="6" justify="center">
+        <Flex align="center" gap="2">
+          <Avatar size="1" fallback="Y" style={{ backgroundColor: '#3b82f6', color: 'white' }} className="text-xs font-bold" />
+          <Text size="1" className="text-gray-600">Yoga</Text>
+        </Flex>
+        <Flex align="center" gap="2">
+          <Avatar size="1" fallback="M" style={{ backgroundColor: '#10b981', color: 'white' }} className="text-xs font-bold" />
+          <Text size="1" className="text-gray-600">Meditation</Text>
+        </Flex>
+        <Flex align="center" gap="2">
+          <Avatar size="1" fallback="B" style={{ backgroundColor: '#ef4444', color: 'white' }} className="text-xs font-bold" />
+          <Text size="1" className="text-gray-600">Breathwork</Text>
         </Flex>
       </Flex>
 

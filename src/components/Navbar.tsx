@@ -39,12 +39,12 @@ const Navbar = () => {
 
                         {/* Desktop Socials & Sign Up Button */}
                         <Flex gap="4" align="center" className="hidden lg:block">
-                            <Flex gap="2" direction="row">
+                            <Flex gap="4" direction="row">
                                 <Link to="/" className="hidden lg:block">
-                                    <TwitterLogoIcon />
+                                    <TwitterLogoIcon height="24" width="24" />
                                 </Link>
                                 <Link to="/" className="hidden lg:block">
-                                    <InstagramLogoIcon />
+                                    <InstagramLogoIcon height="24" width="24" />
                                 </Link>
                             </Flex>
                             <NavigationMenu.Item style={{ display: 'none' }} data-desktop-signup>
@@ -119,7 +119,7 @@ const Navbar = () => {
 
                                             {/* Mobile Socials */}
                                             <div className="mt-12">
-                                                <Flex gap="4" justify="center">
+                                                <Flex gap="4">
                                                     <Link to="/" onClick={() => setIsOpen(false)}>
                                                         <TwitterLogoIcon width="24" height="24" />
                                                     </Link>
