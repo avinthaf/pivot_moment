@@ -27,7 +27,7 @@ function AppWithAnimation() {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Theme
-      accentColor='jade'
+      accentColor='cyan'
       grayColor="gray"
       panelBackground="solid"
       scaling="100%"

@@ -1,20 +1,24 @@
-import { Button, Container, Flex, Heading, Skeleton, Text } from "@radix-ui/themes";
+import { Button, Container, Flex, Heading } from "@radix-ui/themes";
+import heroImage from '../assets/hero.jpg';
 
 
 const Hero = () => {
     return (
-        <Flex className="h-[70dvh] pt-30 bg-gradient-to-b from-[#F7FAF7] via-[#F0FDF4] to-[#DCFCE7]">
-            <Container>
-                <Flex gap="8" align="center">
-                    <Flex direction="column" gap="4">
-                        <Heading size="8">Hero Tagline Goes Here</Heading>
-                        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </Text>
-                        <Flex>
-                            <Button size="3">Book Now</Button>
-                        </Flex>
-                    </Flex>
+        <Flex className="h-[100dvh] md:h-[85dvh] py-20 sm:py-25 md:py-30 bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: `url(${heroImage})` }}>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+            <Container height="100%" className="relative z-10 text-white">
+                <Flex height="100%" direction="column" justify="end" gap="4" p={{
+                    initial: "4",
+                    md: "0",
+                    xl: "0",
+                }}>
+                    <Heading size={{
+                        initial: "8",
+                        md: "9",
+                    }}>This is <br className="block sm:hidden" /><i><span style={{ color: 'var(--accent-9)' }}>your</span></i> moment.</Heading>
+
                     <Flex>
-                        <Skeleton height="480px" width="480px" className="h-full" />
+                        <Button size="3" className="bg-white text-gray-900 hover:bg-white/90 text-xs sm:text-sm md:text-base">Book Now</Button>
                     </Flex>
                 </Flex>
             </Container>

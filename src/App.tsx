@@ -5,6 +5,8 @@ import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Schedule from './components/Schedule'
+import About from './components/About';
+import NewsletterSignup from './components/NewsletterSignup';
 
 function App() {
 
@@ -15,12 +17,16 @@ function App() {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
     >
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
+
+      {/* <section className="pt-20">
+        <About />
+      </section> */}
 
       <section>
         <Container className="pt-20">
-          <Flex gap="2" direction="column">
+          <Flex gap="2" direction="column" className="rounded-4xl p-10 bg-gradient-to-b from-[#F5F7FF] via-[#fffbee] to-[#E6EFFF]">
             <Heading size="8">What I offer</Heading>
             <Text className="max-w-[50%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
             <Flex gap="4" className="pt-4">
@@ -45,9 +51,9 @@ function App() {
       </section>
 
       <section>
-        <Container className="py-20">
+        <Container className="pt-20">
           <Flex className="" gap="2" direction="column">
-            <Heading size="8">Class Schedule</Heading>
+            <Heading size="8">Classes</Heading>
             <Text className="max-w-[50%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
 
             {/* <Skeleton className="mt-4" width="100%" height="680px" /> */}
@@ -58,6 +64,9 @@ function App() {
         </Container>
       </section>
 
+      <section className="pt-20">
+        <NewsletterSignup />
+      </section>
 
       <Footer />
     </motion.div>

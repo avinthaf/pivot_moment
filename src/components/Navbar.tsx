@@ -19,15 +19,15 @@ const Navbar = () => {
 
                         <Flex gap="4">
                             <NavigationMenu.Item>
-                                <NavigationMenu.Link className="font-medium text-sm">Home</NavigationMenu.Link>
+                                <NavigationMenu.Link className="font-bold text-sm">Home</NavigationMenu.Link>
                             </NavigationMenu.Item>
 
                             <NavigationMenu.Item>
-                                <NavigationMenu.Link className="font-medium text-sm">Schedule</NavigationMenu.Link>
+                                <NavigationMenu.Link className="font-bold text-sm">Schedule</NavigationMenu.Link>
                             </NavigationMenu.Item>
 
                             <NavigationMenu.Item>
-                                <NavigationMenu.Link className="font-medium text-sm">Contact</NavigationMenu.Link>
+                                <NavigationMenu.Link className="font-bold text-sm">Contact</NavigationMenu.Link>
                             </NavigationMenu.Item>
                         </Flex>
 

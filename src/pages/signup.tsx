@@ -10,7 +10,7 @@ const Signup = () => {
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      <main className="flex items-center justify-center w-full px-4 min-h-screen bg-gradient-to-b from-[#F7FAF7] via-[#F0FDF4] to-[#DCFCE7]">
+      <main className="flex items-center justify-center w-full px-4 min-h-screen bg-gradient-to-b from-[#F5F7FF] via-[#fffbee] to-[#E6EFFF]">
         <motion.form
           className="flex w-full flex-col max-w-96 bg-white rounded-4xl p-6 shadow-md"
           initial={{ scale: 0.9, opacity: 0 }}

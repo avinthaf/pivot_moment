@@ -1,6 +1,5 @@
 @import "tailwindcss";
 /* eslint-disable-next-line at-rule-no-unknown */
-@source "../node_modules/@ilamy/calendar/dist";
 
 * {
   box-sizing: border-box;
