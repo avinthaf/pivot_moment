@@ -12,17 +12,17 @@ function App() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
+      // initial={{ opacity: 0, y: 20 }}
+      // animate={{ opacity: 1, y: 0 }}
+      // exit={{ opacity: 0, y: -20 }}
+      // transition={{ duration: 0.4, ease: "easeInOut" }}
     >
       {/* <Navbar /> */}
       <Hero />
 
-      {/* <section className="pt-20">
+      <section className="pt-20">
         <About />
-      </section> */}
+      </section>
 
       <section>
         <Container className="pt-20">
