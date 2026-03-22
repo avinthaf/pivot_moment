@@ -5,9 +5,24 @@ import "@radix-ui/themes/styles.css";
 import App from './App.tsx'
 
 import { Theme } from "@radix-ui/themes";
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
+import { AnimatePresence } from 'motion/react';
 import Login from './pages/login.tsx';
 import Signup from './pages/signup.tsx';
+
+function AppWithAnimation() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<App />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/signup" element={<Signup />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,11 +34,7 @@ createRoot(document.getElementById('root')!).render(
       radius="full"
     >
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<Signup />} />
-        </Routes>
+        <AppWithAnimation />
       </BrowserRouter>
     </Theme>
   </StrictMode>,
