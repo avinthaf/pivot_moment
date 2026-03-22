@@ -1,10 +1,8 @@
-import { Container, Flex, Heading, Skeleton, Text } from '@radix-ui/themes'
 import './App.css'
 import { motion } from "motion/react";
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Schedule from './components/Schedule'
 import About from './components/About';
 import NewsletterSignup from './components/NewsletterSignup';
 import Offerings from './components/Offerings';
@@ -14,10 +12,10 @@ function App() {
 
   return (
     <motion.div
-    // initial={{ opacity: 0, y: 20 }}
-    // animate={{ opacity: 1, y: 0 }}
-    // exit={{ opacity: 0, y: -20 }}
-    // transition={{ duration: 0.4, ease: "easeInOut" }}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.4, ease: "easeInOut" }}
     >
       <Navbar />
       <Hero />

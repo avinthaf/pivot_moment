@@ -35,7 +35,7 @@ const About = () => {
                     className="flex-1 order-2 md:order-1 md:basis-1/2"
                 >
                     <MuxPlayer
-                        playbackId="DS00Spx1CV902MCtPj5WknGlR102V5HFkDe"
+                        src=""
                         metadata={{
                             video_title: "About Tim",
                             viewer_user_id: "user-123"
