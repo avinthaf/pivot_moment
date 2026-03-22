@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Heading } from "@radix-ui/themes";
+import { Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import heroImage from '../assets/hero.jpg';
 
 
@@ -16,7 +16,7 @@ const Hero = () => {
                         initial: "8",
                         md: "9",
                     }}>This is <br className="block sm:hidden" /><i><span style={{ color: 'var(--accent-9)' }}>your</span></i> moment.</Heading>
-
+                    <Text style={{ maxWidth: '50dvw' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
                     <Flex>
                         <Button size="3" className="bg-white text-gray-900 hover:bg-white/90 text-xs sm:text-sm md:text-base">Book Now</Button>
                     </Flex>

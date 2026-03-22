@@ -21,8 +21,8 @@ const NewsletterSignup = () => {
                             sm: "row"
                         }}>
                             <TextField.Root
+                                className="md:flex-1"
                                 placeholder="Enter your email"
-                                className="flex-1 w-full sm:max-w-64"
                                 size="3"
                             />
                             <Button size="3" style={{ backgroundColor: 'var(--accent-12)', color: '#FFF' }}>
