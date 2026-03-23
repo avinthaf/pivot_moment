@@ -30,72 +30,72 @@ interface CartProviderProps {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     // Default cart items for testing
     const defaultCartItems: CartItem[] = [
-        {
-            id: '1',
-            title: 'Yoga',
-            price: 25,
-            quantity: 1,
-            description: 'Morning yoga session',
-            date: '2024-03-15',
-            time: '10:00 AM - 11:00 AM',
-            location: 'Studio A',
-            instructor: 'Sarah Johnson'
-        },
-                {
-            id: '2',
-            title: 'Yoga',
-            price: 25,
-            quantity: 1,
-            description: 'Morning yoga session',
-            date: '2024-03-15',
-            time: '10:00 AM - 11:00 AM',
-            location: 'Studio A',
-            instructor: 'Sarah Johnson'
-        },
-                {
-            id: '3',
-            title: 'Yoga',
-            price: 25,
-            quantity: 1,
-            description: 'Morning yoga session',
-            date: '2024-03-15',
-            time: '10:00 AM - 11:00 AM',
-            location: 'Studio A',
-            instructor: 'Sarah Johnson'
-        },
-                {
-            id: '4',
-            title: 'Yoga',
-            price: 25,
-            quantity: 1,
-            description: 'Morning yoga session',
-            date: '2024-03-15',
-            time: '10:00 AM - 11:00 AM',
-            location: 'Studio A',
-            instructor: 'Sarah Johnson'
-        },
-                {
-            id: '5',
-            title: 'Yoga',
-            price: 25,
-            quantity: 1,
-            description: 'Morning yoga session',
-            date: '2024-03-15',
-            time: '10:00 AM - 11:00 AM',
-            location: 'Studio A',
-            instructor: 'Sarah Johnson'
-        },
-                {
-            id: '6',
-            title: 'Yoga',
-            price: 25,
-            quantity: 1,
-            description: 'Morning yoga session',
-            date: '2024-03-15',
-            time: '10:00 AM - 11:00 AM',
-            location: 'Studio A',
-            instructor: 'Sarah Johnson'
-        }
+        // {
+        //     id: '1',
+        //     title: 'Yoga',
+        //     price: 25,
+        //     quantity: 1,
+        //     description: 'Morning yoga session',
+        //     date: '2024-03-15',
+        //     time: '10:00 AM - 11:00 AM',
+        //     location: 'Studio A',
+        //     instructor: 'Sarah Johnson'
+        // },
+        //         {
+        //     id: '2',
+        //     title: 'Yoga',
+        //     price: 25,
+        //     quantity: 1,
+        //     description: 'Morning yoga session',
+        //     date: '2024-03-15',
+        //     time: '10:00 AM - 11:00 AM',
+        //     location: 'Studio A',
+        //     instructor: 'Sarah Johnson'
+        // },
+        //         {
+        //     id: '3',
+        //     title: 'Yoga',
+        //     price: 25,
+        //     quantity: 1,
+        //     description: 'Morning yoga session',
+        //     date: '2024-03-15',
+        //     time: '10:00 AM - 11:00 AM',
+        //     location: 'Studio A',
+        //     instructor: 'Sarah Johnson'
+        // },
+        //         {
+        //     id: '4',
+        //     title: 'Yoga',
+        //     price: 25,
+        //     quantity: 1,
+        //     description: 'Morning yoga session',
+        //     date: '2024-03-15',
+        //     time: '10:00 AM - 11:00 AM',
+        //     location: 'Studio A',
+        //     instructor: 'Sarah Johnson'
+        // },
+        //         {
+        //     id: '5',
+        //     title: 'Yoga',
+        //     price: 25,
+        //     quantity: 1,
+        //     description: 'Morning yoga session',
+        //     date: '2024-03-15',
+        //     time: '10:00 AM - 11:00 AM',
+        //     location: 'Studio A',
+        //     instructor: 'Sarah Johnson'
+        // },
+        //         {
+        //     id: '6',
+        //     title: 'Yoga',
+        //     price: 25,
+        //     quantity: 1,
+        //     description: 'Morning yoga session',
+        //     date: '2024-03-15',
+        //     time: '10:00 AM - 11:00 AM',
+        //     location: 'Studio A',
+        //     instructor: 'Sarah Johnson'
+        // }
     ];
 
     const [cartItems, setCartItems] = useState<CartItem[]>(defaultCartItems);

@@ -1,7 +1,8 @@
 import { useCart } from '../context/CartContext';
-import { Flex, Heading, Text, Button, Separator, Select, Skeleton } from '@radix-ui/themes';
+import { Flex, Heading, Text, Button, Select, Skeleton } from '@radix-ui/themes';
 import { ArrowLeftIcon, CalendarIcon, ClockIcon, TrashIcon } from '@radix-ui/react-icons';
 import dayjs from 'dayjs';
+import { Link } from 'react-router';
 
 const Cart = () => {
     const { cartItems, removeItem, updateQuantity, getTotalItems, getTotalPrice } = useCart();
@@ -10,7 +11,10 @@ const Cart = () => {
         return (
             <div className="max-w-6xl w-full px-6 mx-auto py-16">
                 <Flex direction="column" align="center" gap="4">
-                    <Heading size="6">Your Cart</Heading>
+                    <Heading size={{
+                        initial: "6",
+                        md: "8"
+                    }}>Shopping Cart</Heading>
                     <Text color="gray">Your cart is empty</Text>
                     <Button variant="outline">Continue Shopping</Button>
                 </Flex>
@@ -20,30 +24,33 @@ const Cart = () => {
 
     return (
         <div className="flex flex-col lg:flex-row py-8 max-w-6xl w-full px-6 mx-auto h-[calc(100vh)]">
-            <Flex direction="column" className='overflow-y-hidden flex-1'>
-                <Flex direction="column" gap="4">
-                    <Heading size="6">
-                        Shopping Cart <Text size="2" color="blue">{getTotalItems()} Items</Text>
+            <Flex direction="column" className='overflow-y-hidden flex-1 lg:flex-initial lg:w-2/3'>
+                <Flex direction="column" gap="4" className="mb-4">
+                    <Heading size={{
+                        initial: "6",
+                        md: "8"
+                    }} style={{ marginBottom: '12px' }}>
+                        Shopping Cart
                     </Heading>
 
-                    <Flex direction="column" gap="1">
+                    <div className="block lg:hidden space-y-1">
                         <Flex gap="1" align="center">
-                            <Heading size="2" weight="regular">Subtotal</Heading>
+                            <Heading size="2" weight="regular">Subtotal ({getTotalItems()} Items)</Heading>
                             <Text size="3" weight="bold">${getTotalPrice().toFixed(2)}</Text>
                         </Flex>
 
                         <Flex>
-                            <Button style={{ width: '100%' }}>Proceed to Checkout</Button>
+                            <Button size="3" style={{ width: '100%' }}>Proceed to Checkout</Button>
                         </Flex>
-                    </Flex>
+                    </div>
 
-                    <Separator />
+                    {/* <Separator className="hidden lg:block" /> */}
                 </Flex>
 
                 <Flex direction="column" className='flex-1 overflow-y-auto'>
                     {cartItems.map((item, index) => (
                         <div key={index}>
-                            <Flex gap="4" className="border-b border-gray-200 pb-4 mb-4">
+                            <Flex gap="4" className="mb-6">
                                 <Skeleton width="100px" height="100px" />
 
                                 <Flex direction="column">
@@ -88,40 +95,33 @@ const Cart = () => {
                     ))}
                 </Flex>
                 <div className="mt-6">
-                    <Button variant="ghost">
-                        <ArrowLeftIcon width="16" height="16" />
-                        Continue Shopping
-                    </Button>
+                    <Link to="/">
+                        <Button variant="ghost">
+                            <ArrowLeftIcon width="16" height="16" />
+                            Continue Shopping
+                        </Button>
+                    </Link>
                 </div>
             </Flex>
 
-            {/* <div className="w-full lg:w-80 bg-gray-50 p-6 border border-gray-200 rounded-lg">
-                <Heading size="5" mb="4">Order Summary</Heading>
-                <Separator size="4" />
+            {/* Desktop Right Sidebar */}
+            <div className="hidden lg:block lg:w-1/3 lg:pl-8">
+                <Flex direction="column" className="sticky top-[80px]">
+                        <Flex direction="column" gap="3" className="border p-6 bg-gray-50 rounded-lg border-gray-200">
+                            <Flex justify="between">
+                                <Text size="2">Subtotal ({getTotalItems()} Items)</Text>
+                                <Text size="3" weight="bold">${getTotalPrice().toFixed(2)}</Text>
+                            </Flex>
 
-                <Flex direction="column" gap="3" mt="4">
-                    <Flex justify="between">
-                        <Text>Price</Text>
-                        <Text>${getTotalPrice()}</Text>
-                    </Flex>
-                    <Flex justify="between">
-                        <Text>Tax (8%)</Text>
-                        <Text>${(getTotalPrice() * 0.08).toFixed(2)}</Text>
-                    </Flex>
-                    <Separator size="4" />
-                    <Flex justify="between" className="text-lg font-medium">
-                        <Text>Total Amount:</Text>
-                        <Text>${(getTotalPrice() * 1.08).toFixed(2)}</Text>
-                    </Flex>
+                            <Link to="/checkout">
+                                <Button size="3" className="w-full mt-4">
+                                    Proceed to Checkout
+                                </Button>
+                            </Link>
+                        </Flex>
                 </Flex>
-
-                <Flex className="mt-6">
-                    <Button className="w-full" size="3">
-                        Proceed to Checkout
-                    </Button>
-                </Flex>
-            </div> */}
-        </div>
+            </div>
+        </div >
     );
 };
 
