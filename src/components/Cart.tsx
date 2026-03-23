@@ -105,7 +105,7 @@ const Cart = () => {
             </Flex>
 
             {/* Desktop Right Sidebar */}
-            <div className="hidden lg:block lg:w-1/3 lg:pl-8">
+            <div className="hidden lg:block lg:w-1/2 lg:pl-8">
                 <Flex direction="column" className="sticky top-[80px]">
                         <Flex direction="column" gap="3" className="border p-6 bg-gray-50 rounded-lg border-gray-200">
                             <Flex justify="between">
@@ -113,11 +113,11 @@ const Cart = () => {
                                 <Text size="3" weight="bold">${getTotalPrice().toFixed(2)}</Text>
                             </Flex>
 
-                            <Link to="/checkout">
+                            
                                 <Button size="3" className="w-full mt-4">
-                                    Proceed to Checkout
+                                    Checkout
                                 </Button>
-                            </Link>
+                           
                         </Flex>
                 </Flex>
             </div>

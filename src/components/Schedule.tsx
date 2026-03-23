@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import '../dayjs-config';
-import { Flex, Heading, IconButton, SegmentedControl, Avatar, Text } from '@radix-ui/themes';
+import { Flex, Heading, IconButton, SegmentedControl, Text } from '@radix-ui/themes';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import EventDetailsDrawer from './EventDetailsDrawer';
+import CustomAvatar from './CustomAvatar';
 
 const Schedule = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -180,30 +181,57 @@ const Schedule = () => {
                       onClick={() => handleDayClick(day)}
                     >
                       {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
-                        <Avatar
+                        <CustomAvatar
                           key={event.id}
-                          size={{ initial: "1", md: "2" }}
                           fallback={event.title}
+                          backgroundColor={event.backgroundColor}
+                          color={event.color}
+                          size="1"
                           style={{
-                            backgroundColor: event.backgroundColor,
-                            color: event.color,
                             marginLeft: eventIndex > 0 ? '-8px' : '0',
                             border: '1px solid white'
                           }}
-                          className="text-xs font-bold"
+                          className="text-xs font-bold md:hidden"
                         />
                       ))}
                       {eventsAtTime.length > 3 && (
-                        <Avatar
-                          size={{ initial: "1", md: "2" }}
+                        <CustomAvatar
                           fallback={`+${eventsAtTime.length - 3}`}
-                          variant="solid"
-                          color="gray"
+                          backgroundColor="#6b7280"
+                          color="white"
+                          size="1"
                           style={{
                             marginLeft: '-8px',
                             border: '1px solid white'
                           }}
-                          className="text-xs font-bold"
+                          className="text-xs font-bold md:hidden"
+                        />
+                      )}
+                      {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
+                        <CustomAvatar
+                          key={event.id}
+                          fallback={event.title}
+                          backgroundColor={event.backgroundColor}
+                          color={event.color}
+                          size="2"
+                          style={{
+                            marginLeft: eventIndex > 0 ? '-12px' : '0',
+                            border: '1px solid white'
+                          }}
+                          className="text-xs font-bold hidden md:flex"
+                        />
+                      ))}
+                      {eventsAtTime.length > 3 && (
+                        <CustomAvatar
+                          fallback={`+${eventsAtTime.length - 3}`}
+                          backgroundColor="#6b7280"
+                          color="white"
+                          size="2"
+                          style={{
+                            marginLeft: '-12px',
+                            border: '1px solid white'
+                          }}
+                          className="text-xs font-bold hidden md:flex"
                         />
                       )}
                     </div>
@@ -291,30 +319,57 @@ const Schedule = () => {
                                 onClick={() => handleDayClick(day)}
                               >
                                 {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
-                                  <Avatar
+                                  <CustomAvatar
                                     key={event.id}
-                                    size={{ initial: "1", md: "2" }}
                                     fallback={event.title}
+                                    backgroundColor={event.backgroundColor}
+                                    color={event.color}
+                                    size="1"
                                     style={{
-                                      backgroundColor: event.backgroundColor,
-                                      color: event.color,
                                       marginLeft: eventIndex > 0 ? '-8px' : '0',
                                       border: '1px solid white'
                                     }}
-                                    className="text-xs font-bold"
+                                    className="text-xs font-bold md:hidden"
                                   />
                                 ))}
                                 {eventsAtTime.length > 3 && (
-                                  <Avatar
-                                    size={{ initial: "1", md: "2" }}
+                                  <CustomAvatar
                                     fallback={`+${eventsAtTime.length - 3}`}
-                                    variant="solid"
-                                    color="gray"
+                                    backgroundColor="#6b7280"
+                                    color="white"
+                                    size="1"
                                     style={{
                                       marginLeft: '-8px',
                                       border: '1px solid white'
                                     }}
-                                    className="text-xs font-bold"
+                                    className="text-xs font-bold md:hidden"
+                                  />
+                                )}
+                                {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
+                                  <CustomAvatar
+                                    key={event.id}
+                                    fallback={event.title}
+                                    backgroundColor={event.backgroundColor}
+                                    color={event.color}
+                                    size="2"
+                                    style={{
+                                      marginLeft: eventIndex > 0 ? '-12px' : '0',
+                                      border: '1px solid white'
+                                    }}
+                                    className="text-xs font-bold hidden md:flex"
+                                  />
+                                ))}
+                                {eventsAtTime.length > 3 && (
+                                  <CustomAvatar
+                                    fallback={`+${eventsAtTime.length - 3}`}
+                                    backgroundColor="#6b7280"
+                                    color="white"
+                                    size="2"
+                                    style={{
+                                      marginLeft: '-12px',
+                                      border: '1px solid white'
+                                    }}
+                                    className="text-xs font-bold hidden md:flex"
                                   />
                                 )}
                               </div>
@@ -393,13 +448,13 @@ const Schedule = () => {
                               onClick={() => handleDayClick(day)}
                             >
                               {dayEvents.slice(0, 3).map((event, eventIndex) => (
-                                <Avatar
+                                <CustomAvatar
                                   key={event.id}
-                                  size="1"
                                   fallback={event.title}
+                                  backgroundColor={event.backgroundColor}
+                                  color={event.color}
+                                  size="1"
                                   style={{
-                                    backgroundColor: event.backgroundColor,
-                                    color: event.color,
                                     position: 'absolute',
                                     left: `${eventIndex * 12}px`,
                                     border: '1px solid white'
@@ -408,11 +463,11 @@ const Schedule = () => {
                                 />
                               ))}
                               {dayEvents.length > 3 && (
-                                <Avatar
-                                  size="1"
+                                <CustomAvatar
                                   fallback={`+${dayEvents.length - 3}`}
-                                  variant="solid"
-                                  color="gray"
+                                  backgroundColor="#6b7280"
+                                  color="white"
+                                  size="1"
                                   style={{
                                     position: 'absolute',
                                     left: `${Math.min(3, dayEvents.length) * 12}px`,
@@ -466,15 +521,15 @@ const Schedule = () => {
       {/* Legend */}
       <Flex className="py-2" align="center" gap="6" justify="center">
         <Flex align="center" gap="2">
-          <Avatar size="1" fallback="Y" style={{ backgroundColor: '#3b82f6', color: 'white' }} className="text-xs font-bold" />
+          <CustomAvatar size="1" fallback="Y" backgroundColor="#3b82f6" color="white" className="text-xs font-bold" />
           <Text size="1" className="text-gray-600">Yoga</Text>
         </Flex>
         <Flex align="center" gap="2">
-          <Avatar size="1" fallback="M" style={{ backgroundColor: '#10b981', color: 'white' }} className="text-xs font-bold" />
+          <CustomAvatar size="1" fallback="M" backgroundColor="#10b981" color="white" className="text-xs font-bold" />
           <Text size="1" className="text-gray-600">Meditation</Text>
         </Flex>
         <Flex align="center" gap="2">
-          <Avatar size="1" fallback="B" style={{ backgroundColor: '#ef4444', color: 'white' }} className="text-xs font-bold" />
+          <CustomAvatar size="1" fallback="B" backgroundColor="#ef4444" color="white" className="text-xs font-bold" />
           <Text size="1" className="text-gray-600">Breathwork</Text>
         </Flex>
       </Flex>

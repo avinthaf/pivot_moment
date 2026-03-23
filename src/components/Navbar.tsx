@@ -4,9 +4,11 @@ import { HamburgerMenuIcon, Cross1Icon, TwitterLogoIcon, InstagramLogoIcon } fro
 import { Link } from "react-router";
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import CartDrawer from './CartDrawer';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false);
     const { getTotalItems } = useCart();
     const cartItemCount = getTotalItems();
     return (
@@ -56,7 +58,11 @@ const Navbar = () => {
                                 </Link>
                             </div>
                             <div className="hidden lg:block" data-desktop-cart>
-                                <Link to="/cart" className="relative">
+                                <button
+                                    onClick={() => setIsCartOpen(true)}
+                                    className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                    aria-label="Open cart"
+                                >
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
@@ -70,7 +76,7 @@ const Navbar = () => {
                                             {cartItemCount}
                                         </Badge>
                                     )}
-                                </Link>
+                                </button>
                             </div>
                         </Flex>
 
@@ -159,10 +165,35 @@ const Navbar = () => {
                                 </Dialog.Content>
                             </Dialog.Root>
                         </NavigationMenu.Item>
+
+                        <div className="lg:hidden">
+                            <button
+                                onClick={() => setIsCartOpen(true)}
+                                className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                aria-label="Open cart"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                {cartItemCount > 0 && (
+                                    <Badge
+                                        color="red"
+                                        variant="solid"
+                                        size="1"
+                                        className="absolute -top-1 -right-1 min-w-[16px] h-4 flex items-center justify-center text-xs"
+                                    >
+                                        {cartItemCount}
+                                    </Badge>
+                                )}
+                            </button>
+                        </div>
                     </Flex>
                 </NavigationMenu.List>
 
             </NavigationMenu.Root>
+
+            {/* Cart Drawer */}
+            <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         </Container>
     );
 }
