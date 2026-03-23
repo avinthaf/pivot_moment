@@ -3,10 +3,13 @@ import dayjs from 'dayjs';
 import '../dayjs-config';
 import { Flex, Heading, IconButton, SegmentedControl, Avatar, Text } from '@radix-ui/themes';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import EventDetailsDrawer from './EventDetailsDrawer';
 
 const Schedule = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('month');
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<any>(null);
 
   const events = [
     {
@@ -107,6 +110,11 @@ const Schedule = () => {
     return events.filter(event => event.date.isSame(day, 'day'));
   };
 
+  const handleDayClick = (day: dayjs.Dayjs) => {
+    setSelectedDate(day);
+    setIsDrawerOpen(true);
+  };
+
   const days = getDaysInView();
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -167,7 +175,10 @@ const Schedule = () => {
                 <div key={index} className={`h-16 relative ${index === timeSlots.length - 1 ? '' : 'border-b border-gray-200'
                   }`}>
                   {eventsAtTime.length > 0 && (
-                    <div className="absolute left-1 md:left-2 top-2">
+                    <div
+                      className="absolute left-1 md:left-2 top-2 cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => handleDayClick(day)}
+                    >
                       {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
                         <Avatar
                           key={event.id}
@@ -275,7 +286,10 @@ const Schedule = () => {
                           <div key={timeIndex} className={`h-16 relative ${timeIndex === timeSlots.length - 1 ? '' : 'border-b border-gray-200'
                             }`}>
                             {eventsAtTime.length > 0 && (
-                              <div className="absolute left-1 md:left-2 top-2">
+                              <div
+                                className="absolute left-1 md:left-2 top-2 cursor-pointer hover:opacity-80 transition-opacity"
+                                onClick={() => handleDayClick(day)}
+                              >
                                 {eventsAtTime.slice(0, 3).map((event, eventIndex) => (
                                   <Avatar
                                     key={event.id}
@@ -373,7 +387,11 @@ const Schedule = () => {
                         </div>
                         <div className="space-y-1">
                           {dayEvents.length > 0 && (
-                            <div className="relative flex justify-center" style={{ height: '20px' }}>
+                            <div
+                              className="relative flex justify-center cursor-pointer hover:opacity-80 transition-opacity"
+                              style={{ height: '20px' }}
+                              onClick={() => handleDayClick(day)}
+                            >
                               {dayEvents.slice(0, 3).map((event, eventIndex) => (
                                 <Avatar
                                   key={event.id}
@@ -465,6 +483,14 @@ const Schedule = () => {
       {viewType === 'day' && renderDayView()}
       {viewType === 'week' && renderWeekView()}
       {viewType === 'month' && renderMonthView()}
+
+      {/* Event Details Drawer */}
+      <EventDetailsDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        selectedDate={selectedDate}
+        events={selectedDate ? getEventsForDay(selectedDate) : []}
+      />
     </div>
   );
 };

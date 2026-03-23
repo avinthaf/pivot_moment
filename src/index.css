@@ -57,6 +57,39 @@
   }
 }
 
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Drawer animation using Radix UI's data states */
+.slide-in-right-drawer {
+  animation: slideInRight 0.3s ease-out;
+}
+
+[data-state="open"] .slide-in-right-drawer {
+  animation: slideInRight 0.3s ease-out;
+}
+
+[data-state="closed"] .slide-in-right-drawer {
+  animation: slideOutRight 0.3s ease-out;
+}
+
 /* Override dialog overlay for drawer */
 [data-radix-dialog-overlay] {
   background-color: rgba(0, 0, 0, 0.5);

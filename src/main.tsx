@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
 import { AnimatePresence } from 'motion/react';
 import Login from './pages/login.tsx';
 import Signup from './pages/signup.tsx';
+import { CartProvider } from './context/CartContext';
+import Cart from './components/Cart';
 
 function AppWithAnimation() {
   const location = useLocation();
@@ -19,6 +21,7 @@ function AppWithAnimation() {
         <Route path="/" element={<App />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </AnimatePresence>
   );
@@ -33,9 +36,11 @@ createRoot(document.getElementById('root')!).render(
       scaling="100%"
       radius="full"
     >
-      <BrowserRouter>
-        <AppWithAnimation />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <AppWithAnimation />
+        </BrowserRouter>
+      </CartProvider>
     </Theme>
   </StrictMode>,
 )
